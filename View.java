@@ -21,7 +21,13 @@ public class View extends JFrame implements  ActionListener,Runnable{
 
     JTextField CustomerEndTime;
 
+    JTextField productors;
+
+    JTextField consumidors;
+
     Controller controller;
+
+
 
     public View(Controller controller) {
         this.controller = controller;
@@ -34,6 +40,9 @@ public class View extends JFrame implements  ActionListener,Runnable{
         this.CustomerStartTime = new JTextField("0");
         this.ProducerEndTime = new JTextField("0");
         this.CustomerEndTime = new JTextField("0");
+        this.consumidors= new JTextField("0");
+        this.productors=new JTextField("0");
+        
 
         this.configureJFrame();
 
@@ -48,6 +57,8 @@ public class View extends JFrame implements  ActionListener,Runnable{
         JLabel lProducerEndTime =new JLabel("Producer end time : ");
         JLabel lCustomerStarTime =new JLabel("Customer start time : ");
         JLabel lCustomerEndTime =new JLabel("Customer end time : ");
+        JLabel lProductor= new JLabel("Productors number");
+        JLabel lConsumidor= new JLabel("Consumidor number");
 
         c.anchor = GridBagConstraints.NORTHWEST;
         c.fill = GridBagConstraints.HORIZONTAL;
@@ -84,6 +95,18 @@ public class View extends JFrame implements  ActionListener,Runnable{
         panel.add(lCustomerEndTime,c);
         c.gridx++;
         panel.add(CustomerEndTime,c);
+
+        c.gridx=1;
+        c.gridy++;
+        panel.add(lConsumidor, c);
+        c.gridx++;
+        panel.add(consumidors, c);
+
+        c.gridx=1;
+        c.gridy++;
+        panel.add(lProductor, c);
+        c.gridx++;
+        panel.add(productors, c);
     }
 
     private void configureJFrame(){
@@ -120,7 +143,9 @@ public class View extends JFrame implements  ActionListener,Runnable{
                 this.getProducerEndTime().setText("0");
                 this.getCustomerStartTime().setText("0");
                 this.getCustomerEndTime().setText("0");
-                controller.play();
+                int productores=Integer.parseInt(productors.getText()); 
+                int consumidores=Integer.parseInt(consumidors.getText()); 
+                controller.play(productores,consumidores);
                 break;
             default:
                 System.err.println("Acción NO tratada: " + e);
