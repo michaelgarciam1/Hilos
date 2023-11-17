@@ -1,3 +1,4 @@
+package Model;
 public class Counter {
     private int count;
 
@@ -5,6 +6,10 @@ public class Counter {
     private long ProducerEndTime;
     private  long CustomerStartTime;
     private long CustomerEndTime;
+    private long threadTime;
+    private float avgThread;
+    private long timeStart;
+    private float avgStart;
 
     public Counter() {
         this.count = 0;
@@ -71,4 +76,39 @@ public class Counter {
     public void setCustomerStartTime(long customerStartTime) {
         CustomerStartTime = customerStartTime;
     }
+
+    public long getThreadTime() {
+        return this.threadTime;
+    }
+
+    public void setThreadTime(long threadProducer) {
+        this.threadTime = threadProducer;
+    }
+
+
+    public float getAvgThread() {
+        return this.avgThread;
+    }
+
+    public void setAvgThread(float avgThread) {
+        this.avgThread = avgThread;
+    }
+
+
+    public long getTimeStart() {
+        return this.timeStart;
+    }
+
+    public void setTimeStart(long timeStart) {
+        this.timeStart = timeStart;
+    }
+
+    public float getAvgStart() {
+        return this.avgStart;
+    }
+
+    public void setAvgStart(float avgStart) {
+        this.avgStart = avgStart;
+    }
+
 }

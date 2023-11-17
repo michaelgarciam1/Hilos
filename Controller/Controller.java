@@ -1,3 +1,8 @@
+
+package Controller;
+import Model.Model;
+import View.View;
+
 public class Controller {
 
     Model model;
@@ -7,15 +12,23 @@ public class Controller {
         this.model = new Model();
         this.view = new View(this);
     }
-    public void play(int productors,int consumidors){
+
+    public void play(int productores, int sliderProductor, boolean produceRandom, int consumidores,
+            int sliderConsumidor,
+            boolean consumeRandom) {
 
         this.model.counter.setCount(0);
         this.model.counter.setProducerStartTime(0);
         this.model.counter.setProducerEndTime(0);
         this.model.counter.setCustomerStartTime(0);
         this.model.counter.setCustomerEndTime(0);
+        this.model.counter.setAvgThread(0);
+        this.model.counter.setThreadTime(0);
+        this.model.counter.setTimeStart(0);
+        this.model.counter.setAvgStart(0);
 
-        this.model.play(productors,consumidors);
+        this.model.play(productores, sliderProductor, produceRandom, consumidores, sliderConsumidor,
+        consumeRandom);
     }
 
     public View getView() {
@@ -27,7 +40,6 @@ public class Controller {
 
         Thread thread = new Thread(controller.getView());
         thread.start();
-
 
     }
 }
