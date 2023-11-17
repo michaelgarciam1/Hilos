@@ -5,7 +5,7 @@ import View.View;
 
 public class Controller {
 
-    Model model;
+    public Model model;
     View view;
 
     public Controller() {

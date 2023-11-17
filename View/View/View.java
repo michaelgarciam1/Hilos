@@ -1,9 +1,13 @@
+package View;
 import javax.swing.*;
+import Controller.Controller;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+
 public class View extends JFrame implements ActionListener, Runnable {
+    Controller controller;
     JButton startButton;
 
     JTextField counter;
@@ -20,7 +24,7 @@ public class View extends JFrame implements ActionListener, Runnable {
 
     JTextField consumidors;
 
-    Controller controller;
+    
 
     JCheckBox timeConsumeRandom;
     JCheckBox timeProduceRandom;

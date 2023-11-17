@@ -1,6 +1,6 @@
 package Model;
 public class Model {
-    Counter counter;
+    public Counter counter;
 
     public  Model (){
         counter = new Counter();
