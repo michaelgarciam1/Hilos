@@ -3,7 +3,7 @@ package Controller;
 import DTO.*;
 import Model.TJTLModel;
 import View.TJTLView;
-import View.View;
+// import View.OldView;
 
 public class TJTLController {
 
@@ -14,27 +14,13 @@ public class TJTLController {
     LabResults labResults;
 
     public TJTLController() {
-        this.model = new TJTLModel();
+        this.model = new TJTLModel(labParameters, labResults);
         // this.view = new View(this);
         this.view= new TJTLView(this.labParameters,this.labResults,this);
     }
 
-    public void play(int productores, int sliderProductor, boolean produceRandom, int consumidores,
-            int sliderConsumidor,
-            boolean consumeRandom) {
-
-        this.model.counter.setCount(0);
-        this.model.counter.setProducerStartTime(0);
-        this.model.counter.setProducerEndTime(0);
-        this.model.counter.setCustomerStartTime(0);
-        this.model.counter.setCustomerEndTime(0);
-        this.model.counter.setAvgThread(0);
-        this.model.counter.setThreadTime(0);
-        this.model.counter.setTimeStart(0);
-        this.model.counter.setAvgStart(0);
-
-        this.model.play(productores, sliderProductor, produceRandom, consumidores, sliderConsumidor,
-        consumeRandom);
+    public void play() {
+        this.model.play();
     }
 
     public TJTLView getView() {
@@ -43,9 +29,7 @@ public class TJTLController {
 
     public static void main(String[] args) {
         TJTLController controller = new TJTLController();
-
         Thread thread = new Thread(controller.getView());
         thread.start();
-
     }
 }

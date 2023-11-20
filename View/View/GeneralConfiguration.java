@@ -19,6 +19,10 @@ public class GeneralConfiguration extends JPanel {
     JSlider sliderProducer;
     JSlider sliderConsumer;
 
+    JTextField consumerQuantity;
+    JTextField producerQuantity;
+    
+
     public GeneralConfiguration() {
         this.consumidors = new JTextField("0");
         this.productors = new JTextField("0");
@@ -26,6 +30,8 @@ public class GeneralConfiguration extends JPanel {
         this.timeProduceRandom = new JCheckBox();
         this.sliderConsumer = new JSlider(0, 1000, 0);
         this.sliderProducer = new JSlider(0, 1000, 0);
+        this.consumerQuantity = new JTextField("0");
+        this.producerQuantity = new JTextField("0");
         this.setLayout(new GridBagLayout());
         addComponentsToPane();
     }
@@ -36,25 +42,36 @@ public class GeneralConfiguration extends JPanel {
         JLabel lConsumidor = new JLabel("Consumidor number");
         JLabel lTimeConsumeRandom = new JLabel("Tiempo consumidor aleatorio");
         JLabel lTimeProduceRandom = new JLabel("Tiempo productor aleatorio");
+        JLabel lConsumerQuantity = new JLabel("Cantidad consumidores");
+        JLabel lProducerQuantity = new JLabel("Cantidad productores");
         c.anchor = GridBagConstraints.NORTHWEST;
         c.fill = GridBagConstraints.HORIZONTAL;
-        c.gridx = 1;
+        c.gridx = 0;
         c.gridy = 0;
         c.weightx = 1;
         c.weighty = 1;
         c.gridheight = 1;
         c.gridwidth = 1;
         c.gridx = 1;
-        c.gridy++;
+
         this.add(lConsumidor, c);
         c.gridx++;
         this.add(consumidors, c);
+        c.gridx++;
+        this.add(lConsumerQuantity, c);
+        c.gridx++;
+        this.add(consumerQuantity, c);
+
 
         c.gridx = 1;
         c.gridy++;
         this.add(lProductor, c);
         c.gridx++;
         this.add(productors, c);
+        c.gridx++;
+        this.add(lProducerQuantity, c);
+        c.gridx++;
+        this.add(producerQuantity, c);
 
         c.gridx = 1;
         c.gridy++;

@@ -1,59 +1,94 @@
 package Model;
-public class TJTLModel {
-    public ProtectedCounter counter;
 
-    public  TJTLModel (){
-        counter = new ProtectedCounter();
+import DTO.*;
+
+public class TJTLModel {
+    private Product product;
+    private LabParameters parameters;
+    private LabResults results;
+
+    public TJTLModel(LabParameters parameters, LabResults results) {
+        product = new Product("Producto");
+        this.parameters = parameters;
+        this.results = results;
     }
 
-    public  void play(int productores, int sliderProductor, boolean produceRandom, int consumidores,
-    int sliderConsumidor,
-    boolean consumeRandom){
-        Thread []  customersThreads = new Thread[consumidores];
-        Thread []  producersThreads = new Thread[productores];
+    public void play() {
+        int consumidores = parameters.consumidores;
+        int productores = parameters.productores;
+        int sliderConsumidor = parameters.sliderConsumer;
+        int sliderProductor = parameters.sliderProducer;
+        boolean consumeRandom = parameters.timeConsumeRandom;
+        boolean produceRandom = parameters.timeProduceRandom;
+
+        Thread[] customersThreads = new Thread[consumidores];
+        Thread[] producersThreads = new Thread[productores];
 
         for (int i = 0; i < customersThreads.length; i++) {
-            long tiempohilo=System.currentTimeMillis();
-            customersThreads[i] = new Thread(new Consumer(counter,consumeRandom,sliderConsumidor));
-            tiempohilo=System.currentTimeMillis()-tiempohilo;
-            this.counter.setThreadTime(tiempohilo+counter.getThreadTime());
+            long tiempohilo = System.currentTimeMillis();
+            customersThreads[i] = new Thread(new Consumer(product, consumeRandom, sliderConsumidor));
+            tiempohilo = System.currentTimeMillis() - tiempohilo;
+            this.results.threadTime = tiempohilo + this.results.threadTime;
+            // this.counter.setThreadTime(tiempohilo+counter.getThreadTime());
 
-            long tiempoStart=System.currentTimeMillis();
+            long tiempoStart = System.currentTimeMillis();
             customersThreads[i].start();
-            tiempoStart=System.currentTimeMillis()-tiempoStart;
-            this.counter.setTimeStart(counter.getTimeStart()+tiempoStart);
+            tiempoStart = System.currentTimeMillis() - tiempoStart;
+            this.results.timeStart = tiempoStart + this.results.timeStart;
         }
 
         for (int i = 0; i < producersThreads.length; i++) {
-            long tiempohilo=System.currentTimeMillis();
-            producersThreads[i] = new Thread(new Producer(counter,produceRandom,sliderProductor));
-            tiempohilo=System.currentTimeMillis()-tiempohilo;
-            this.counter.setThreadTime(tiempohilo+counter.getThreadTime());
+            long tiempohilo = System.currentTimeMillis();
+            producersThreads[i] = new Thread(new Producer(product, produceRandom, sliderProductor));
+            tiempohilo = System.currentTimeMillis() - tiempohilo;
+            this.results.threadTime = tiempohilo + this.results.threadTime;
 
-
-            long duracionStart=System.currentTimeMillis();
+            long duracionStart = System.currentTimeMillis();
             producersThreads[i].start();
-            duracionStart=System.currentTimeMillis()-duracionStart;
-            this.counter.setTimeStart(duracionStart+this.counter.getTimeStart());
+            duracionStart = System.currentTimeMillis() - duracionStart;
+            this.results.timeStart = duracionStart + this.results.timeStart;
         }
-        System.out.println(counter.getTimeStart());
-        this.counter.setAvgThread(this.counter.getThreadTime()/(float)(consumidores+productores));
-        this.counter.setAvgStart(this.counter.getTimeStart()/(float)(consumidores+productores));
-//        try {
-//            for( Thread hilo:customersThreads){
-//                hilo.join();
-//            }
-//        } catch (Exception e) {}
-//
-//        try {
-//            for( Thread hilo:producersThreads){
-//                hilo.join();
-//            }
-//        } catch (Exception e) {}
+
+        // System.out.println(counter.getTimeStart());
+        this.results.avgThread = this.results.threadTime / (float) (consumidores + productores);
+        this.results.avgStart = this.results.timeStart / (float) (consumidores + productores);
     }
 
-    public ProtectedCounter getCounter() {
-        return counter;
+    // try {
+    // for( Thread hilo:customersThreads){
+    // hilo.join();
+    // }
+    // } catch (Exception e) {}
+    //
+    // try {
+    // for( Thread hilo:producersThreads){
+    // hilo.join();
+    // }
+    // } catch (Exception e) {}
+
+    public Product getProduct() {
+        return this.product;
+    }
+
+    public void setProduct(Product product) {
+        this.product = product;
+    }
+
+    public LabParameters getParameters() {
+        return this.parameters;
+    }
+    
+
+    public void setParameters(LabParameters parameters) {
+        this.parameters = parameters;
+    }
+
+    public LabResults getResults() {
+        return this.results;
+    }
+
+    public void setResults(LabResults results) {
+        this.results = results;
     }
 
 }

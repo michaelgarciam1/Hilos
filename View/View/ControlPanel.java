@@ -1,9 +1,11 @@
 package View;
 
 
+import java.awt.Color;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 
+import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -11,25 +13,29 @@ import javax.swing.JToggleButton;
 
 public class ControlPanel extends JPanel{
     JToggleButton playPause;
+    JButton reiniciar;
     JCheckBox protectCriticalRegions;
     JCheckBox preventNegativeStock;
 
 
     public ControlPanel(){
         this.playPause=new JToggleButton("playPause");
+        this.reiniciar= new JButton("reiniciar");
         this.preventNegativeStock=new JCheckBox();
         this.protectCriticalRegions=new JCheckBox();
         this.setLayout(new GridBagLayout());
         addComponentsToPane();
+        // this.setBackground(new Color(255,24,26));
     }
 
     private void addComponentsToPane(){
         
         GridBagConstraints c= new GridBagConstraints();
         JLabel lplayPause= new JLabel("Boton play-Pause");
+        JLabel lreiniciar= new JLabel("Boton reiniciar");
         JLabel lprotectCriticalRegions = new JLabel("Proteger regiones criticas");
         JLabel lpreventNegativeStock= new JLabel("prevenir resultados negativos");
-
+        
         c.anchor = GridBagConstraints.NORTHWEST;
         c.fill = GridBagConstraints.HORIZONTAL;
         c.gridx = 1;
@@ -42,6 +48,13 @@ public class ControlPanel extends JPanel{
         this.add(lplayPause,c);
         c.gridx++;
         this.add(this.playPause,c);
+        
+        c.gridx = 1;
+        c.gridy++;
+        this.add(lreiniciar,c);
+        c.gridx++;
+        this.add(reiniciar,c);
+
         c.gridx = 1;
         c.gridy++;
         this.add(lprotectCriticalRegions,c);

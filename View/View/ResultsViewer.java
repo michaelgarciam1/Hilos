@@ -10,33 +10,44 @@ import DTO.LabResults;
 
 public class ResultsViewer extends JPanel implements Runnable {
 
-    JTextField counter;
+    JTextField timeThread;
+    JTextField startThread;
 
-    JTextField ProducerStartTime;
-    JTextField CustomerStartTime;
+    JTextField consumersTimeThread;
+    JTextField producerTimeThread;
 
-    JTextField ProducerEndTime;
-    JTextField CustomerEndTime;
+    JTextField quantityItemsProduced;
+    JTextField quantityItemsConsumed;
 
-    JTextField sumaCreacionHilos;
-    JTextField mediaCreacionHilos;
+    JTextField processingProductors;
+    JTextField finishedProductors;
+    JTextField pendingProductors;
 
-    JTextField sumaStart;
-    JTextField mediaStart;
-
+    JTextField processingConsumers;
+    JTextField finishedConsumers;
+    JTextField pendingConsumers;
+    
     LabResults resultados;
 
     public ResultsViewer(LabResults resultados) {
         this.resultados = resultados;
-        this.counter = new JTextField("0");
-        this.ProducerStartTime = new JTextField("0");
-        this.CustomerStartTime = new JTextField("0");
-        this.ProducerEndTime = new JTextField("0");
-        this.CustomerEndTime = new JTextField("0");
-        this.sumaCreacionHilos = new JTextField("0");
-        this.mediaCreacionHilos = new JTextField("0");
-        this.sumaStart = new JTextField("0");
-        this.mediaStart = new JTextField("0");
+
+        this.timeThread = new JTextField("0");
+        this.startThread = new JTextField("0");
+
+        this.consumersTimeThread = new JTextField("0");
+        this.producerTimeThread = new JTextField("0");
+
+        this.quantityItemsProduced = new JTextField("0");
+        this.quantityItemsConsumed = new JTextField("0");
+
+        this.processingProductors = new JTextField("0");
+        this.finishedProductors = new JTextField("0");
+        this.pendingProductors = new JTextField("0");
+
+        this.processingConsumers = new JTextField("0");
+        this.finishedConsumers = new JTextField("0");
+        this.pendingConsumers = new JTextField("0");
         this.setLayout(new GridBagLayout());
         this.addComponentsToPane();
     }
@@ -48,15 +59,23 @@ public class ResultsViewer extends JPanel implements Runnable {
 
     private void addComponentsToPane() {
         GridBagConstraints c = new GridBagConstraints();
-        JLabel lCounter = new JLabel("Valor del contador: ");
-        JLabel lProducerStarTime = new JLabel("Producer start time : ");
-        JLabel lProducerEndTime = new JLabel("Producer end time : ");
-        JLabel lCustomerStarTime = new JLabel("Customer start time : ");
-        JLabel lCustomerEndTime = new JLabel("Customer end time : ");
-        JLabel lsumacreacionHilos= new JLabel("Tiempo total creacion de hilos");
-        JLabel lmediaCreacionHilos=new JLabel("Media creacion de hilos");
-        JLabel lSumaStart=new JLabel("Tiempo total del start");
-        JLabel lmediaStart=new JLabel("Media del tiempo del start");
+        JLabel ltimeThread = new JLabel("Creacion objectes Thread (m/s)");
+        JLabel lstartThread = new JLabel("Tiempo de inicio Threads (m/s)");
+
+        JLabel lconsumersTimeThread = new JLabel("procesamiento consumidores (m/s)");
+        JLabel lproducerTimeThread = new JLabel("procesamiento productores (m/s)");
+        
+        JLabel lquantityItemsProduced = new JLabel("items producidos");
+        JLabel lquantityItemsConsumed = new JLabel("items consumidos");
+        
+        JLabel lprocessingProductors = new JLabel("procesamiento productores ");
+        JLabel lfinishedProductors = new JLabel("productores finalizados");
+        JLabel lpendingProductors = new JLabel("productores pendientes");
+        
+        JLabel lprocessingConsumers = new JLabel("procesamiento consumidores");
+        JLabel lfinishedConsumers = new JLabel("consumidores finalizados");
+        JLabel lpendingConsumers = new JLabel("consumidores pendientes");
+
 
         c.anchor = GridBagConstraints.NORTHWEST;
         c.fill = GridBagConstraints.HORIZONTAL;
@@ -67,138 +86,81 @@ public class ResultsViewer extends JPanel implements Runnable {
         c.gridheight = 1;
         c.gridwidth = 1;
 
-        this.add(lCounter, c);
+        this.add(ltimeThread, c);
         c.gridx++;
-        this.add(this.counter, c);
+        this.add(this.timeThread, c);
 
         c.gridx = 1;
         c.gridy++;
-        this.add(lProducerStarTime, c);
+        this.add(lstartThread, c);
         c.gridx++;
-        this.add(ProducerStartTime, c);
+        this.add(startThread, c);
         
         c.gridx = 1;
         c.gridy++;
-        this.add(lCustomerStarTime, c);
+        this.add(lconsumersTimeThread, c);
         c.gridx++;
-        this.add(CustomerStartTime, c);
+        this.add(consumersTimeThread, c);
         
         c.gridx = 1;
         c.gridy++;
-        this.add(lProducerEndTime, c);
+        this.add(lproducerTimeThread, c);
         c.gridx++;
+        this.add(producerTimeThread, c);
         
-        this.add(ProducerEndTime, c);
         c.gridx = 1;
         c.gridy++;
-        this.add(lCustomerEndTime, c);
+        this.add(lquantityItemsProduced, c);
         c.gridx++;
-        this.add(CustomerEndTime, c);
+        this.add(quantityItemsProduced, c);
 
         c.gridx = 1;
         c.gridy++;
-        this.add(lsumacreacionHilos, c);
+        this.add(lquantityItemsConsumed, c);
         c.gridx++;
-        this.add(sumaCreacionHilos, c);
+        this.add(quantityItemsConsumed, c);
 
         c.gridx = 1;
         c.gridy++;
-        this.add(lmediaCreacionHilos, c);
+        this.add(lprocessingProductors, c);
         c.gridx++;
-        this.add(mediaCreacionHilos, c);
+        this.add(processingProductors, c);
 
         c.gridx=1;
         c.gridy++;
-        this.add(lSumaStart, c);
+        this.add(lfinishedProductors, c);
         c.gridx++;
-        this.add(sumaStart,c);
+        this.add(finishedProductors,c);
 
         c.gridx=1;
         c.gridy++;
-        this.add(lmediaStart, c);
+        this.add(lpendingProductors, c);
         c.gridx++;
-        this.add(mediaStart,c);
+        this.add(pendingProductors,c);
+
+        c.gridx=1;
+        c.gridy++;
+        this.add(lprocessingConsumers, c);
+        c.gridx++;
+        this.add(processingConsumers,c);
+
+        c.gridx=1;
+        c.gridy++;
+        this.add(lfinishedConsumers, c);
+        c.gridx++;
+        this.add(finishedConsumers,c);
+
+        c.gridx=1;
+        c.gridy++;
+        this.add(lpendingConsumers, c);
+        c.gridx++;
+        this.add(pendingConsumers,c);
+
+        
+
 
     }
 
-    public JTextField getCounter() {
-        return this.counter;
-    }
 
-    public void setCounter(JTextField counter) {
-        this.counter = counter;
-    }
-
-    public JTextField getProducerStartTime() {
-        return this.ProducerStartTime;
-    }
-
-    public void setProducerStartTime(JTextField ProducerStartTime) {
-        this.ProducerStartTime = ProducerStartTime;
-    }
-
-    public JTextField getCustomerStartTime() {
-        return this.CustomerStartTime;
-    }
-
-    public void setCustomerStartTime(JTextField CustomerStartTime) {
-        this.CustomerStartTime = CustomerStartTime;
-    }
-
-    public JTextField getProducerEndTime() {
-        return this.ProducerEndTime;
-    }
-
-    public void setProducerEndTime(JTextField ProducerEndTime) {
-        this.ProducerEndTime = ProducerEndTime;
-    }
-
-    public JTextField getCustomerEndTime() {
-        return this.CustomerEndTime;
-    }
-
-    public void setCustomerEndTime(JTextField CustomerEndTime) {
-        this.CustomerEndTime = CustomerEndTime;
-    }
-
-    public JTextField getSumaCreacionHilos() {
-        return this.sumaCreacionHilos;
-    }
-
-    public void setSumaCreacionHilos(JTextField sumaCreacionHilos) {
-        this.sumaCreacionHilos = sumaCreacionHilos;
-    }
-
-    public JTextField getMediaCreacionHilos() {
-        return this.mediaCreacionHilos;
-    }
-
-    public void setMediaCreacionHilos(JTextField mediaCreacionHilos) {
-        this.mediaCreacionHilos = mediaCreacionHilos;
-    }
-
-    public JTextField getSumaStart() {
-        return this.sumaStart;
-    }
-
-    public void setSumaStart(JTextField sumaStart) {
-        this.sumaStart = sumaStart;
-    }
-
-    public JTextField getMediaStart() {
-        return this.mediaStart;
-    }
-
-    public void setMediaStart(JTextField mediaStart) {
-        this.mediaStart = mediaStart;
-    }
-
-    public LabResults getResultados() {
-        return this.resultados;
-    }
-
-    public void setResultados(LabResults resultados) {
-        this.resultados = resultados;
-    }
 
 }

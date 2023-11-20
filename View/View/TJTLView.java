@@ -1,12 +1,14 @@
 package View;
 
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
 import Controller.TJTLController;
 import DTO.*;
 
+import java.awt.Color;
 import java.awt.Container;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -37,13 +39,17 @@ public class TJTLView extends JFrame implements ActionListener,ChangeListener,Li
     private void configureJFrame(){
         this.setLayout(new GridBagLayout());
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.setSize(500, 400);
+        this.setSize(500, 500);
         this.addComponentsToPane(this.getContentPane());
     }
 
     private void addComponentsToPane(Container panel){
         GridBagConstraints c = new GridBagConstraints();
-
+        JLabel lcontroPanel= new JLabel("Control Panel");
+        JLabel lgeneralConfiguration = new JLabel("General Configuration");
+        JLabel lresultsViewer = new JLabel("Results Viewer");
+        
+        
         c.anchor = GridBagConstraints.NORTHWEST;
         c.fill = GridBagConstraints.HORIZONTAL;
         c.gridx = 0;
@@ -52,10 +58,24 @@ public class TJTLView extends JFrame implements ActionListener,ChangeListener,Li
         c.weighty = 1;
         c.gridheight = 1;
         c.gridwidth = 1;
-
+        
+        // Set highlight and background color for labels
+        lcontroPanel.setOpaque(true);
+        lcontroPanel.setBackground(new Color(239,186,186));
+        lgeneralConfiguration.setOpaque(true);
+        lgeneralConfiguration.setBackground(new Color(186,239,202));
+        lresultsViewer.setOpaque(true);
+        lresultsViewer.setBackground(new Color(237,186,239));
+        
+        panel.add(lcontroPanel, c);
+        c.gridy++;
         panel.add(controlPanel, c);
         c.gridy++;
+        panel.add(lgeneralConfiguration, c);
+        c.gridy++;
         panel.add(generalConfiguration, c);
+        c.gridy++;
+        panel.add(lresultsViewer, c);
         c.gridy++;
         panel.add(resultsViewer, c);
     }
