@@ -1,9 +1,9 @@
 package Model;
 public class TJTLModel {
-    public Counter counter;
+    public ProtectedCounter counter;
 
     public  TJTLModel (){
-        counter = new Counter();
+        counter = new ProtectedCounter();
     }
 
     public  void play(int productores, int sliderProductor, boolean produceRandom, int consumidores,
@@ -14,7 +14,7 @@ public class TJTLModel {
 
         for (int i = 0; i < customersThreads.length; i++) {
             long tiempohilo=System.currentTimeMillis();
-            customersThreads[i] = new Thread(new Customer(counter,consumeRandom,sliderConsumidor));
+            customersThreads[i] = new Thread(new Consumer(counter,consumeRandom,sliderConsumidor));
             tiempohilo=System.currentTimeMillis()-tiempohilo;
             this.counter.setThreadTime(tiempohilo+counter.getThreadTime());
 
@@ -52,7 +52,7 @@ public class TJTLModel {
 //        } catch (Exception e) {}
     }
 
-    public Counter getCounter() {
+    public ProtectedCounter getCounter() {
         return counter;
     }
 
