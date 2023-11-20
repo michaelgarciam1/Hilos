@@ -1,8 +1,8 @@
 package Model;
-public class Model {
+public class TJTLModel {
     public Counter counter;
 
-    public  Model (){
+    public  TJTLModel (){
         counter = new Counter();
     }
 

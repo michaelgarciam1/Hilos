@@ -1,13 +1,13 @@
 package View;
 import javax.swing.*;
-import Controller.Controller;
+import Controller.TJTLController;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 
 public class View extends JFrame implements ActionListener, Runnable {
-    Controller controller;
+    TJTLController controller;
     JButton startButton;
 
     JTextField counter;
@@ -39,7 +39,7 @@ public class View extends JFrame implements ActionListener, Runnable {
     JTextField mediaStart;
 
 
-    public View(Controller controller) {
+    public View(TJTLController controller) {
         this.controller = controller;
 
         this.startButton = new JButton("Play");
@@ -82,7 +82,7 @@ public class View extends JFrame implements ActionListener, Runnable {
         JLabel lmediaCreacionHilos=new JLabel("Media creacion de hilos");
         JLabel lSumaStart=new JLabel("Tiempo total del start");
         JLabel lmediaStart=new JLabel("Media del tiempo del start");
-
+        
         c.anchor = GridBagConstraints.NORTHWEST;
         c.fill = GridBagConstraints.HORIZONTAL;
         c.gridx = 1;
@@ -295,11 +295,11 @@ public class View extends JFrame implements ActionListener, Runnable {
         this.consumidors = consumidors;
     }
 
-    public Controller getController() {
+    public TJTLController getController() {
         return this.controller;
     }
 
-    public void setController(Controller controller) {
+    public void setController(TJTLController controller) {
         this.controller = controller;
     }
 

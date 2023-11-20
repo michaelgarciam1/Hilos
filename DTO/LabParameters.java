@@ -9,6 +9,5 @@ public class LabParameters {
     public int sliderProducer;
 
     public LabParameters(){
-        
     }
 }

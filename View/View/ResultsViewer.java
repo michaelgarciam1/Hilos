@@ -121,4 +121,84 @@ public class ResultsViewer extends JPanel implements Runnable {
 
     }
 
+    public JTextField getCounter() {
+        return this.counter;
+    }
+
+    public void setCounter(JTextField counter) {
+        this.counter = counter;
+    }
+
+    public JTextField getProducerStartTime() {
+        return this.ProducerStartTime;
+    }
+
+    public void setProducerStartTime(JTextField ProducerStartTime) {
+        this.ProducerStartTime = ProducerStartTime;
+    }
+
+    public JTextField getCustomerStartTime() {
+        return this.CustomerStartTime;
+    }
+
+    public void setCustomerStartTime(JTextField CustomerStartTime) {
+        this.CustomerStartTime = CustomerStartTime;
+    }
+
+    public JTextField getProducerEndTime() {
+        return this.ProducerEndTime;
+    }
+
+    public void setProducerEndTime(JTextField ProducerEndTime) {
+        this.ProducerEndTime = ProducerEndTime;
+    }
+
+    public JTextField getCustomerEndTime() {
+        return this.CustomerEndTime;
+    }
+
+    public void setCustomerEndTime(JTextField CustomerEndTime) {
+        this.CustomerEndTime = CustomerEndTime;
+    }
+
+    public JTextField getSumaCreacionHilos() {
+        return this.sumaCreacionHilos;
+    }
+
+    public void setSumaCreacionHilos(JTextField sumaCreacionHilos) {
+        this.sumaCreacionHilos = sumaCreacionHilos;
+    }
+
+    public JTextField getMediaCreacionHilos() {
+        return this.mediaCreacionHilos;
+    }
+
+    public void setMediaCreacionHilos(JTextField mediaCreacionHilos) {
+        this.mediaCreacionHilos = mediaCreacionHilos;
+    }
+
+    public JTextField getSumaStart() {
+        return this.sumaStart;
+    }
+
+    public void setSumaStart(JTextField sumaStart) {
+        this.sumaStart = sumaStart;
+    }
+
+    public JTextField getMediaStart() {
+        return this.mediaStart;
+    }
+
+    public void setMediaStart(JTextField mediaStart) {
+        this.mediaStart = mediaStart;
+    }
+
+    public LabResults getResultados() {
+        return this.resultados;
+    }
+
+    public void setResultados(LabResults resultados) {
+        this.resultados = resultados;
+    }
+
 }

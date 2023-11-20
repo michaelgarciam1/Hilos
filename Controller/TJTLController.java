@@ -1,16 +1,22 @@
 
 package Controller;
-import Model.Model;
+import DTO.*;
+import Model.TJTLModel;
+import View.TJTLView;
 import View.View;
 
-public class Controller {
+public class TJTLController {
 
-    public Model model;
-    View view;
+    public TJTLModel model;
+    // View view;
+    TJTLView view;
+    LabParameters labParameters;
+    LabResults labResults;
 
-    public Controller() {
-        this.model = new Model();
-        this.view = new View(this);
+    public TJTLController() {
+        this.model = new TJTLModel();
+        // this.view = new View(this);
+        this.view= new TJTLView(this.labParameters,this.labResults,this);
     }
 
     public void play(int productores, int sliderProductor, boolean produceRandom, int consumidores,
@@ -31,12 +37,12 @@ public class Controller {
         consumeRandom);
     }
 
-    public View getView() {
+    public TJTLView getView() {
         return view;
     }
 
     public static void main(String[] args) {
-        Controller controller = new Controller();
+        TJTLController controller = new TJTLController();
 
         Thread thread = new Thread(controller.getView());
         thread.start();
