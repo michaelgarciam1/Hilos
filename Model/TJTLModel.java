@@ -12,34 +12,33 @@ public class TJTLModel {
         this.parameters = parameters;
         this.results = results;
     }
-
+ 
     public void play() {
         int consumidores = parameters.consumidores;
         int productores = parameters.productores;
-        int sliderConsumidor = parameters.sliderConsumer;
-        int sliderProductor = parameters.sliderProducer;
-        boolean consumeRandom = parameters.timeConsumeRandom;
-        boolean produceRandom = parameters.timeProduceRandom;
+
 
         Thread[] customersThreads = new Thread[consumidores];
         Thread[] producersThreads = new Thread[productores];
 
+
         for (int i = 0; i < customersThreads.length; i++) {
             long tiempohilo = System.currentTimeMillis();
-            customersThreads[i] = new Thread(new Consumer(product, consumeRandom, sliderConsumidor));
+            customersThreads[i] = new Thread(new Consumer(product, parameters, results));
             tiempohilo = System.currentTimeMillis() - tiempohilo;
             this.results.threadTime = tiempohilo + this.results.threadTime;
             // this.counter.setThreadTime(tiempohilo+counter.getThreadTime());
 
             long tiempoStart = System.currentTimeMillis();
             customersThreads[i].start();
+            
             tiempoStart = System.currentTimeMillis() - tiempoStart;
             this.results.timeStart = tiempoStart + this.results.timeStart;
         }
 
         for (int i = 0; i < producersThreads.length; i++) {
             long tiempohilo = System.currentTimeMillis();
-            producersThreads[i] = new Thread(new Producer(product, produceRandom, sliderProductor));
+            producersThreads[i] = new Thread(new Producer(product, parameters, results));
             tiempohilo = System.currentTimeMillis() - tiempohilo;
             this.results.threadTime = tiempohilo + this.results.threadTime;
 
@@ -90,5 +89,7 @@ public class TJTLModel {
     public void setResults(LabResults results) {
         this.results = results;
     }
+
+
 
 }

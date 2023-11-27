@@ -1,33 +1,37 @@
 package Model;
+
 import java.util.Random;
+
+import DTO.LabParameters;
+import DTO.LabResults;
 
 public class Consumer implements Runnable {
     Product product;
-    Long startTime;
-    Long endTime;
-    boolean random;
-    int sleepTime;
+    LabResults labResults;
+    LabParameters labParameters;
 
-    public Consumer(Product product, boolean random, int sleepTime) {
+    public Consumer(Product product, LabParameters labParameters, LabResults labResults) {
         this.product = product;
-        this.random = random;
-        this.sleepTime = sleepTime;
+        this.labParameters = labParameters;
+        this.labResults = labResults;
     }
-
 
     @Override
     public void run() {
-        if(random){
+        this.labResults.hilosProcesandoConsumidor++;
+        if (labParameters.timeConsumeRandom) {
             consumirRandom();
-        }else{
+        } else {
             consumirValorEspecifico();
         }
+        this.labResults.hilosFinalizadosConsumidor++;
     }
 
     private void consumirRandom() {
-        this.startTime = System.currentTimeMillis();
-        for (int i = 0; i < 100; i++) {
-            this.product.consume();
+        labResults.CustomerStartTime = System.currentTimeMillis();
+        for (int i = 0; i < labParameters.itemstoconsume; i++) {
+            this.labResults.consumedItems++;
+            this.product.consume(labParameters.protectCriticalRegions);
             try {
                 Random rand = new Random();
                 int sleepTime = rand.nextInt(100);
@@ -36,21 +40,22 @@ public class Consumer implements Runnable {
                 e.printStackTrace();
             }
         }
-        this.endTime = System.currentTimeMillis() - startTime;
+        labResults.CustomerEndTime = System.currentTimeMillis() - labResults.CustomerStartTime;
         // this.counter.updateCustomersTimes(endTime, startTime);
     }
 
     private void consumirValorEspecifico() {
-        this.startTime = System.currentTimeMillis();
-        for (int i = 0; i < 100; i++) {
-            this.product.consume();
+        labResults.CustomerStartTime = System.currentTimeMillis();
+        for (int i = 0; i < labParameters.itemstoconsume; i++) {
+            this.labResults.consumedItems++;
+            this.product.consume(labParameters.protectCriticalRegions);
             try {
-                Thread.sleep(this.sleepTime); // Introduce una pausa de 100 milisegundos
+                Thread.sleep(labParameters.sliderConsumer); // Introduce una pausa de 100 milisegundos
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
         }
-        this.endTime = System.currentTimeMillis() - startTime;
+        labResults.CustomerEndTime = System.currentTimeMillis() - labResults.CustomerStartTime;
         // this.counter.updateCustomersTimes(endTime, startTime);
     }
 }

@@ -7,6 +7,11 @@ public class LabParameters {
     public boolean timeProduceRandom;
     public int sliderConsumer;
     public int sliderProducer;
+    public boolean protectCriticalRegions;
+    public boolean preventNegativeStock;
+    public int itemstoconsume;
+    public int itemstoproduce;
+
 
     public LabParameters(){
     }

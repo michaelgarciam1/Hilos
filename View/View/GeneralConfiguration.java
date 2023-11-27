@@ -42,8 +42,8 @@ public class GeneralConfiguration extends JPanel {
         JLabel lConsumidor = new JLabel("Consumidor number");
         JLabel lTimeConsumeRandom = new JLabel("Tiempo consumidor aleatorio");
         JLabel lTimeProduceRandom = new JLabel("Tiempo productor aleatorio");
-        JLabel lConsumerQuantity = new JLabel("Cantidad consumidores");
-        JLabel lProducerQuantity = new JLabel("Cantidad productores");
+        JLabel lConsumerQuantity = new JLabel("Cantidad items consumidores");
+        JLabel lProducerQuantity = new JLabel("Cantidad items productores");
         c.anchor = GridBagConstraints.NORTHWEST;
         c.fill = GridBagConstraints.HORIZONTAL;
         c.gridx = 0;
@@ -138,5 +138,22 @@ public class GeneralConfiguration extends JPanel {
     public void setSliderConsumer(JSlider sliderConsumer) {
         this.sliderConsumer = sliderConsumer;
     }
+
+    public JTextField getConsumerQuantity() {
+        return this.consumerQuantity;
+    }
+
+    public void setConsumerQuantity(JTextField consumerQuantity) {
+        this.consumerQuantity = consumerQuantity;
+    }
+
+    public JTextField getProducerQuantity() {
+        return this.producerQuantity;
+    }
+
+    public void setProducerQuantity(JTextField producerQuantity) {
+        this.producerQuantity = producerQuantity;
+    }
+
 
 }
